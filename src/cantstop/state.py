@@ -36,8 +36,9 @@ class State:
     runners: tuple[tuple[int, int], ...] = ()
     # The 4 dice if a roll is waiting for the player to choose a pairing.
     dice: tuple[int, int, int, int] | None = None
-    # True once the player has made a successful roll this turn
-    # (stop is only legal after that).
+    # True while the player is facing a stop/continue decision, i.e. right
+    # after a successful roll has been played. This is what makes stop
+    # illegal before the first successful roll. False means "a roll is due".
     rolled: bool = False
 
     @property

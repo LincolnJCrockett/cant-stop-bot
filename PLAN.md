@@ -8,9 +8,9 @@ Status legend: [ ] todo, [x] done
 - [x] Python env, pyproject, pytest
 
 ## M1 — Rules engine
-- [ ] State, dice, pairings, legal-action generation
-- [ ] Turn/bust/stop/capture/win logic
-- [ ] Unit tests for every edge case in RULES.md
+- [x] State, dice, pairings, legal-action generation
+- [x] Turn/bust/stop/capture/win logic
+- [x] Unit tests for every edge case in RULES.md
 
 ## M2 — Environment interface
 - [ ] reset/step API, legal action mask, observation encoding
