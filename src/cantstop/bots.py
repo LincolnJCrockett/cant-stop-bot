@@ -115,3 +115,19 @@ def make_heuristic_bot(n: int):
             return choose_play(state, rng)
         return STOP if steps_gained_this_turn(state) >= n else CONTINUE
     return policy
+
+
+def make_heuristic_colprog_bot(threshold: float):
+    """Score-based pairing choice + the column-progress stop rule.
+
+    The same pairing choice as make_heuristic_bot, but stopping is judged in
+    column fractions (a step on a short column counts for more) instead of
+    raw steps.
+    """
+    def policy(state: State, rng):
+        if state.dice is not None:
+            return choose_play(state, rng)
+        if column_progress_this_turn(state) >= threshold:
+            return STOP
+        return CONTINUE
+    return policy

@@ -129,3 +129,33 @@ def test_beats_random_player_clearly():
 
 def test_smart_pairing_beats_random_pairing_with_same_stop_rule():
     assert win_rate(make_heuristic_bot(5), make_stop_after_n(5)) > 0.6
+
+
+# --- heuristic bot with the column-progress stop rule ----------------------
+from cantstop.bots import make_heuristic_colprog_bot  # noqa: E402
+
+
+def test_colprog_variant_stops_by_column_fraction():
+    bot = make_heuristic_colprog_bot(0.5)
+    rng = np.random.default_rng(0)
+    assert bot(deciding(((12, 2),)), rng) == STOP        # 2/3 of a column
+    assert bot(deciding(((7, 6),)), rng) == CONTINUE     # 6/13
+    assert bot(deciding(((7, 7),)), rng) == STOP         # 7/13
+
+
+def test_colprog_variant_uses_the_heuristic_pairing_choice():
+    bot = make_heuristic_colprog_bot(0.5)
+    s = pending((1, 2, 3, 4), runners=((4, 1),))
+    for seed in range(20):
+        assert bot(s, np.random.default_rng(seed)) == play(4, 6)
+
+
+def test_colprog_variant_legal_and_beats_random():
+    rng = np.random.default_rng(4)
+    bot = make_heuristic_colprog_bot(0.6)
+    s = roll_until_decision(new_game(), rng)
+    while not s.is_over:
+        a = bot(s, rng)
+        assert a in legal_actions(s)
+        s = step(s, a, rng)
+    assert win_rate(bot, random_policy) > 0.8

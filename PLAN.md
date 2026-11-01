@@ -17,8 +17,8 @@ Status legend: [ ] todo, [x] done
 - [x] Terminal play mode (human vs bot)
 
 ## M3 — Baseline bots
-- [ ] Random, "stop after N progress", heuristic
-- [ ] Bot-vs-bot tournament harness
+- [x] Random, "stop after N progress", heuristic
+- [x] Bot-vs-bot tournament harness
 
 ## M4 — Game records / dataset storage
 Goal: store many game histories compactly and load them fast for training.
