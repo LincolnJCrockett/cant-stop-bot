@@ -13,7 +13,7 @@ Status legend: [ ] todo, [x] done
 - [x] Unit tests for every edge case in RULES.md
 
 ## M2 — Environment interface
-- [ ] reset/step API, legal action mask, observation encoding
+- [x] reset/step API, legal action mask, observation encoding
 - [x] Terminal play mode (human vs bot)
 
 ## M3 — Baseline bots
