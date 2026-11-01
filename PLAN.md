@@ -5,7 +5,7 @@ Status legend: [ ] todo, [x] done
 ## M0 — Setup
 - [x] git init
 - [x] RULES.md reviewed/approved by user
-- [ ] Python env, pyproject, pytest
+- [x] Python env, pyproject, pytest
 
 ## M1 — Rules engine
 - [ ] State, dice, pairings, legal-action generation

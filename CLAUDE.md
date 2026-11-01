@@ -20,5 +20,6 @@ The point of this project is for the user to learn how model training works.
 ## Conventions
 - Python 3.10+, package in `src/cantstop/`, tests in `tests/` (pytest).
 - Engine is pure and deterministic: seedable RNG, no global state.
-- Run tests: `python -m pytest`
+- Setup: `py -3.12 -m venv .venv` then `.venv/Scripts/python -m pip install -e ".[dev]"` (add `,train` for PyTorch when training starts)
+- Run tests: `.venv/Scripts/python -m pytest`
 - Commit per milestone with clear messages.
