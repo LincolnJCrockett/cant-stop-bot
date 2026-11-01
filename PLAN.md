@@ -14,7 +14,7 @@ Status legend: [ ] todo, [x] done
 
 ## M2 — Environment interface
 - [ ] reset/step API, legal action mask, observation encoding
-- [ ] Terminal play mode (human vs bot)
+- [x] Terminal play mode (human vs bot)
 
 ## M3 — Baseline bots
 - [ ] Random, "stop after N progress", heuristic
