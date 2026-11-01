@@ -20,7 +20,9 @@ Status legend: [ ] todo, [x] done
 - [x] Random, "stop after N progress", heuristic
 - [x] Bot-vs-bot tournament harness
 
-## M4 — Game records / dataset storage
+## M4 — Game records / dataset storage (DEFERRED)
+Deferred: on-policy RL (REINFORCE/PPO) generates its own data and discards it,
+so nothing needs storing. Revisit only for the replay check or analysis.
 Goal: store many game histories compactly and load them fast for training.
 - [ ] Decide what a record contains: per-step observation (or enough to
       rebuild it), action taken, legal mask, acting player, reward/outcome,
@@ -37,7 +39,9 @@ Goal: store many game histories compactly and load them fast for training.
 ## M5 — Training (hand-written, PyTorch for tensors/autograd only)
 - [ ] REINFORCE baseline
 - [ ] PPO with action masking + self-play
-- [ ] Optional: supervised/imitation pretraining from stored records
 
 ## M6 — Evaluation
 - [ ] Seeded win-rate evals vs baselines, learning curves
+- [ ] Train several runs from different random seeds; compare final strength
+      (vs heur cp.6) and play style to check for local optima / cycling
+- [ ] Optional: entropy bonus; opponent pool if self-play cycles
