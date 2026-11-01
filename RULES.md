@@ -1,7 +1,7 @@
-# Can't Stop — Rules Specification (DRAFT, awaiting review)
+# Can't Stop — Rules Specification (FINAL)
 
 Source of truth for the simulator. Engine and tests must match this file.
-Items marked **[CONFIRM]** are ambiguous or variant-dependent.
+Any future rule change must be made here first, then in code and tests.
 
 ## Components
 - 4 six-sided dice.
@@ -28,10 +28,17 @@ player stops.
      (a runner advances one step per sum; same sum twice = two steps,
      capped at the top). If both need a *new* runner but only one is free,
      only one can be placed — player's choice of which.
+   - Playing both is mandatory: if both sums of the chosen pairing are
+     playable, the player cannot apply just one. The only exception is the
+     runner limit above, where only one can be placed.
    - If only one sum is playable, only that one is applied.
-   - The player must choose a pairing that allows at least one playable sum
-     whenever one exists (a pairing with a playable sum can't be passed up for
-     a bust).
+   - The player may choose ANY pairing that has at least one playable sum,
+     even if another pairing would let them play two sums. (E.g. they may
+     pick a pairing with one playable sum over one with two.)
+   - If at least one pairing has a playable sum, the player must pick one of
+     those; they can't decline to play and bust.
+   - Pairings with no playable sum are not legal choices when any other
+     pairing has one.
 5. **Bust:** if NO pairing yields a playable sum, the turn ends and all runner
    progress this turn is lost. Permanent progress is unchanged. Turn passes.
 6. **Decision:** after a successful roll the player chooses
