@@ -27,11 +27,11 @@ player stops.
    - If both sums of the chosen pairing are playable, both are applied
      (a runner advances one step per sum; same sum twice = two steps,
      capped at the top). If both need a *new* runner but only one is free,
-     only one can be placed — player's choice of which. **[CONFIRM]**
+     only one can be placed — player's choice of which.
    - If only one sum is playable, only that one is applied.
    - The player must choose a pairing that allows at least one playable sum
      whenever one exists (a pairing with a playable sum can't be passed up for
-     a bust). **[CONFIRM]**
+     a bust).
 5. **Bust:** if NO pairing yields a playable sum, the turn ends and all runner
    progress this turn is lost. Permanent progress is unchanged. Turn passes.
 6. **Decision:** after a successful roll the player chooses
@@ -64,5 +64,3 @@ First player to own **3 captured columns** at the end of their turn wins.
 - Stop forbidden before first successful roll.
 - Game ends immediately when a player's stop yields their 3rd capture.
 
-## Out of scope
-Variants (e.g., "can't stop at top"), house rules, and more than 4 players.

@@ -4,7 +4,7 @@ Status legend: [ ] todo, [x] done
 
 ## M0 — Setup
 - [x] git init
-- [ ] RULES.md reviewed/approved by user
+- [x] RULES.md reviewed/approved by user
 - [ ] Python env, pyproject, pytest
 
 ## M1 — Rules engine
@@ -20,9 +20,24 @@ Status legend: [ ] todo, [x] done
 - [ ] Random, "stop after N progress", heuristic
 - [ ] Bot-vs-bot tournament harness
 
-## M4 — Training (hand-written, PyTorch for tensors/autograd only)
+## M4 — Game records / dataset storage
+Goal: store many game histories compactly and load them fast for training.
+- [ ] Decide what a record contains: per-step observation (or enough to
+      rebuild it), action taken, legal mask, acting player, reward/outcome,
+      plus per-game metadata (seed, players/policies, winner, length)
+- [ ] Choose format (leading candidate: flat NumPy arrays with an index of
+      game boundaries, memory-mappable; compare against .npz / HDF5 / Parquet)
+- [ ] Writer that appends games in chunks (no need to hold all in RAM)
+- [ ] Reader / PyTorch-friendly loader (random step batches, whole-game
+      access, train/val split by game)
+- [ ] Replay check: re-simulate from stored seed + actions and verify the
+      same outcome (guards against engine/format bugs)
+- [ ] Generate a dataset from the baseline bots; measure size and read speed
+
+## M5 — Training (hand-written, PyTorch for tensors/autograd only)
 - [ ] REINFORCE baseline
 - [ ] PPO with action masking + self-play
+- [ ] Optional: supervised/imitation pretraining from stored records
 
-## M5 — Evaluation
+## M6 — Evaluation
 - [ ] Seeded win-rate evals vs baselines, learning curves
