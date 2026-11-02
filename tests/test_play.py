@@ -49,3 +49,13 @@ def test_saved_model_loads_and_plays_a_full_game(tmp_path):
     final = play_game([random_policy, bot], seed=2, print_fn=lambda *_: None,
                       verbose_bots=False)
     assert final.is_over
+
+
+def test_bundled_model_loads_and_beats_random():
+    from pathlib import Path
+    from cantstop.play import load_model_policy
+    from cantstop.tournament import play_match
+    path = Path(__file__).resolve().parent.parent / "models" / "reinforce_seed0.pt"
+    assert path.exists()
+    bot = load_model_policy(str(path))
+    assert play_match(bot, random_policy, games=40, seed=0).win_rate_a > 0.8

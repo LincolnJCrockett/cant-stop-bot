@@ -8,3 +8,6 @@ runs/
 checkpoints/
 *.pt
 .ipynb_checkpoints/
+
+# Keep the shipped, playable model
+!models/*.pt
