@@ -37,3 +37,15 @@ def test_render_and_describe_smoke():
     assert "Stop" in describe(STOP) and "Continue" in describe(CONTINUE)
     assert describe(Action(Kind.PLAY, (6, 6))) == "Advance column 6 twice"
     assert describe(Action(Kind.PLAY, (6, 8))) == "Advance column 6 and 8"
+
+
+def test_saved_model_loads_and_plays_a_full_game(tmp_path):
+    import torch
+    from cantstop.model import PolicyNet
+    from cantstop.play import load_model_policy
+    path = tmp_path / "net.pt"
+    torch.save(PolicyNet().state_dict(), path)
+    bot = load_model_policy(str(path), greedy=True)
+    final = play_game([random_policy, bot], seed=2, print_fn=lambda *_: None,
+                      verbose_bots=False)
+    assert final.is_over

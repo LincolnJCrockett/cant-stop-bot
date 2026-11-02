@@ -37,7 +37,7 @@ Goal: store many game histories compactly and load them fast for training.
 - [ ] Generate a dataset from the baseline bots; measure size and read speed
 
 ## M5 — Training (hand-written, PyTorch for tensors/autograd only)
-- [ ] REINFORCE baseline
+- [x] REINFORCE baseline (seed 0, 600 iters: ~65% vs heur cp.6)
 - [ ] PPO with action masking + self-play
 
 ## M6 — Evaluation

@@ -71,6 +71,16 @@ def make_human_policy(input_fn=input, print_fn=print) -> Policy:
     return human
 
 
+def load_model_policy(path: str, greedy: bool = False) -> Policy:
+    """Load a saved network checkpoint and wrap it as a policy."""
+    import torch                       # imported here: torch is optional
+    from cantstop.model import PolicyNet, make_policy
+    net = PolicyNet()
+    net.load_state_dict(torch.load(path))
+    net.eval()
+    return make_policy(net, greedy)
+
+
 # --- Game loop -----------------------------------------------------------
 def play_game(policies: list[Policy], seed: int | None = None,
               print_fn=print, verbose_bots: bool = True) -> State:
@@ -102,9 +112,16 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Play Can't Stop in the terminal.")
     parser.add_argument("--opponent", choices=["random", "human"], default="random")
     parser.add_argument("--seed", type=int, default=None)
+    parser.add_argument("--model", type=str, default=None,
+                        help="path to a trained checkpoint to play against")
+    parser.add_argument("--greedy", action="store_true",
+                        help="model always picks its most likely move")
     args = parser.parse_args()
     human = make_human_policy()
-    opponent = human if args.opponent == "human" else random_policy
+    if args.model:
+        opponent = load_model_policy(args.model, greedy=args.greedy)
+    else:
+        opponent = human if args.opponent == "human" else random_policy
     try:
         play_game([human, opponent], seed=args.seed)
     except KeyboardInterrupt:
